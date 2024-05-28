@@ -1,14 +1,14 @@
 import {useState, useEffect } from 'react';
 import firebase from 'firebase/compat/app';
 import ListOfTodo from './components/ListOfTodo';
-import SignIn from './components/auth/SignIn';
+import EditTodo from './components/EditTodo';
 import AuthDetails from './components/AuthDetails';
-
+import SignIn from './components/auth/SignIn';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import SignUp from './components/auth/SignUp';
 import 'firebase/compat/auth';
 import './App.css';
 import './config/firebase-config.js';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import SignUp from './components/auth/SignUp';
 
 function App() {
 
@@ -50,8 +50,10 @@ function App() {
 								<SignUp/>
 								<SignIn/>
 								<button onClick={loginWithGoogle}>Login with Google</button>
-							</div>)
-						}/>
+							</div>
+						)
+					}/>
+					<Route path='/edit' element={auth ? (<div><EditTodo/></div>):(<div>teste</div>)}/>
 				</Routes>
 			</BrowserRouter>
 		</div>

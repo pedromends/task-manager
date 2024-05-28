@@ -1,9 +1,8 @@
-import { signInWithEmailAndPassword } from "firebase/auth";
-import React, { useState } from "react";
+import { useState } from "react";
 import firebase from 'firebase/compat/app';
+
 function SignIn (){
 
-    
     const [ email, setEmail ] = useState("");
     const [ password, setPassword ] = useState("");
     const [authFlag, setAuth] = useState( false || window.localStorage.getItem('auth') === 'true' );
@@ -11,14 +10,13 @@ function SignIn (){
     const signIn = (e: any) => {
 
         e.preventDefault();
-        console.log(email, password)
-        firebase.auth().signInWithEmailAndPassword(email, password)
-        .then((userCredential)=>{
-            console.log(userCredential);
-        }).catch((error)=> {
-            console.log(error);
-        }).finally(()=> setAuth(true));
-        
+        firebase.auth()
+            .signInWithEmailAndPassword(email, password).then((userCredential)=>{
+                console.log(userCredential);
+            }).catch((error)=> {
+                console.log(error);
+            })
+        .finally(()=> setAuth(true));
     }
 
     return (

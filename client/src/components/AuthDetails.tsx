@@ -1,5 +1,5 @@
-import { User, onAuthStateChanged, signOut } from "firebase/auth";
-import React, { useEffect, useState } from "react";
+import { User, onAuthStateChanged } from "firebase/auth";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import firebase from 'firebase/compat/app';
 import { auth } from "../config/firebase-config";
@@ -26,7 +26,6 @@ const AuthDetails = () => {
     const userSignOut = () => {
         firebase.auth().signOut().then(() => {
             window.localStorage.setItem('auth', 'false');
-            console.log("sign out successful");
         })
         .catch((error) => console.log(error)).finally(()=>{
             navigate("/");

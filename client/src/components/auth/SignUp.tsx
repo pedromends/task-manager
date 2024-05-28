@@ -1,8 +1,8 @@
-import { createUserWithEmailAndPassword } from "firebase/auth";
-import React, { useState } from "react";
-import { auth, db } from "../../config/firebase-config";
-import { addDoc, collection, doc, serverTimestamp, setDoc } from "firebase/firestore";
+import { useState } from "react";
+import { db } from "../../config/firebase-config";
+import { addDoc, collection, serverTimestamp } from "firebase/firestore";
 import firebase from 'firebase/compat/app';
+
 function SignUp (){
 
     const [ email, setEmail ] = useState("");
@@ -13,25 +13,24 @@ function SignUp (){
 
         e.preventDefault();
         console.log(email, name, password)
-        firebase.auth().createUserWithEmailAndPassword(email, password)
-        .then((response)=>{
-            console.log(response);
-            addDoc(collection(db, 'users'), {
-				nome: name,
-				descricao: email,
-                senha: password,
-				timeStamp: serverTimestamp()
-			})
-            
-        }).catch((error)=> {
-            console.log(error);
-        });
+        firebase.auth()
+            .createUserWithEmailAndPassword(email, password).then((response)=>{
+                console.log(response);
+                addDoc(collection(db, 'users'), {
+                    nome: name,
+                    descricao: email,
+                    senha: password,
+                    timeStamp: serverTimestamp()
+                })
+            }).catch((error)=> {
+                console.log(error);
+            }
+        );
     }
 
     return (
         <div className="sign-in-container">
             <form onSubmit={signUp}>
-            
                 <h1>Create Account</h1>
                 <div>
                     <label htmlFor="">Name</label>
