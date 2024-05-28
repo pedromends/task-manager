@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { addDoc, collection, serverTimestamp, getDocs, deleteDoc, doc } from 'firebase/firestore';
 import { db } from "../config/firebase-config"
 import { useNavigate } from "react-router-dom";
+import ButtonUsage from './mui/ButtonUsage';
 
 type todos = {
 	id: string,
@@ -51,8 +52,6 @@ export default function ListOfTodo({ token } : { token: string }) {
 	}
 
 	function handleEdit(id:string, title:string, desc:string) {
-		
-
 		navigate("/edit", {state: {id:id, title:title, desc:desc}})
 	}
 
@@ -93,6 +92,7 @@ export default function ListOfTodo({ token } : { token: string }) {
 							<p>{todo.titulo}</p>
 							<p>{todo.descricao}</p>
 							<button onClick={(e) => handleEdit(todo.id,todo.titulo, todo.descricao)}>Editar</button>
+							<ButtonUsage/>
 							<button onClick={(e) => handleDelete(todo.id)}>Excluir</button>
 						</div>
 					</div>
