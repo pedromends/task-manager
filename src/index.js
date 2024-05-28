@@ -17,12 +17,15 @@ app.get('/api/todos', (req, res) => {
 		todos: [
 			{
 				title: 'Task1',
+				desc: 'Desc1'
 			},
 			{
 				title: 'Task2',
+				desc: 'Desc1'
 			},
 			{
 				title: 'Task3',
+				desc: 'Desc3'
 			},
 		],
 	});

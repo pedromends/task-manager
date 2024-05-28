@@ -8,6 +8,7 @@ import 'firebase/compat/auth';
 import './App.css';
 import './config/firebase-config.js';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import SignUp from './components/auth/SignUp';
 
 function App() {
 
@@ -46,6 +47,7 @@ function App() {
 							</div>
 							) : (
 							<div>
+								<SignUp/>
 								<SignIn/>
 								<button onClick={loginWithGoogle}>Login with Google</button>
 							</div>)
