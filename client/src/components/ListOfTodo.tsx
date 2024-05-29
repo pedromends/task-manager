@@ -2,17 +2,27 @@ import { useEffect, useState } from 'react';
 import { addDoc, collection, serverTimestamp, getDocs, deleteDoc, doc } from 'firebase/firestore';
 import { db } from "../config/firebase-config"
 import { useNavigate } from "react-router-dom";
-import ButtonUsage from './mui/ButtonUsage';
+import TodoTable from './table/TodoTable';
 
-type todos = {
+interface Data {
 	id: string,
-	titulo: string,
-	descricao: string
+	title: string;
+	description: string;
+	operations: string;
 }
+
+function createData(
+	id: string,
+	title: string,
+	description: string,
+    operations: string
+  ): Data {
+	return { id, title, description, operations };
+  }
 
 export default function ListOfTodo({ token } : { token: string }) {
 
-	const [ todos, setTodos ] = useState<todos[]>([]);
+	const [rows, setRows] = useState<Data[]>([])
 	const [ title, setTitle ] = useState("");
     const [ desc, setDesc ] = useState("");
 	const navigate = useNavigate();
@@ -22,13 +32,12 @@ export default function ListOfTodo({ token } : { token: string }) {
 			getDocs(collection(db, 'tasks')).then((docs:any)=>{
 				docs.forEach((doc:any) => {
 					const aux = doc.data()
-					let obj:todos =  {id: doc.id, titulo: aux.titulo, descricao: aux.descricao}
-					setTodos(todos => [...todos, obj])
+					setRows(rows => [...rows, createData(doc.id, aux.titulo, aux.descricao, '')])
 				})
 			}).catch((e) => {
 				console.log(e)
 			}).finally(() => {
-				console.log(todos)
+				console.log(rows)
 			})
 		};
 	}, [token]);
@@ -84,20 +93,7 @@ export default function ListOfTodo({ token } : { token: string }) {
 				</div>
 				<button type="submit">Enviar</button>
 			</form>
-			{ todos.map((todo:todos, i) => {
-				return(
-					<div style={{display: 'flex', justifyContent: 'center', gap: '3rem'}} key={i}>
-						<div style={{ display: 'flex', gap: '3rem'}}>
-							<p>{todo.id}</p>
-							<p>{todo.titulo}</p>
-							<p>{todo.descricao}</p>
-							<button onClick={(e) => handleEdit(todo.id,todo.titulo, todo.descricao)}>Editar</button>
-							<ButtonUsage/>
-							<button onClick={(e) => handleDelete(todo.id)}>Excluir</button>
-						</div>
-					</div>
-				)
-			})}
+			<TodoTable rows={rows}/>
 		</div>
 	);
 }
