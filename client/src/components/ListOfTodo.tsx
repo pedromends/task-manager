@@ -3,44 +3,16 @@ import { addDoc, collection, serverTimestamp, getDocs, deleteDoc, doc } from 'fi
 import { db } from "../config/firebase-config"
 import { useNavigate } from "react-router-dom";
 import TodoTable from './table/TodoTable';
+import Grid from './table/CrudGrid';
+import CrudGrid from './table/CrudGrid';
 
-interface Data {
-	id: string,
-	title: string;
-	description: string;
-	operations: string;
-}
 
-function createData(
-	id: string,
-	title: string,
-	description: string,
-    operations: string
-  ): Data {
-	return { id, title, description, operations };
-  }
 
 export default function ListOfTodo({ token } : { token: string }) {
 
-	const [rows, setRows] = useState<Data[]>([])
 	const [ title, setTitle ] = useState("");
     const [ desc, setDesc ] = useState("");
 	const navigate = useNavigate();
-		
-	useEffect(() => {
-		if (token) {
-			getDocs(collection(db, 'tasks')).then((docs:any)=>{
-				docs.forEach((doc:any) => {
-					const aux = doc.data()
-					setRows(rows => [...rows, createData(doc.id, aux.titulo, aux.descricao, '')])
-				})
-			}).catch((e) => {
-				console.log(e)
-			}).finally(() => {
-				console.log(rows)
-			})
-		};
-	}, [token]);
 
 	const handleAdd = async (e:any) => {
 		e.preventDefault()
@@ -93,7 +65,8 @@ export default function ListOfTodo({ token } : { token: string }) {
 				</div>
 				<button type="submit">Enviar</button>
 			</form>
-			<TodoTable rows={rows}/>
+			{/* <TodoTable rows={rows}/> */}
+			<CrudGrid></CrudGrid>
 		</div>
 	);
 }
