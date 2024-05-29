@@ -19,27 +19,29 @@ function EditTodo() {
             titulo:  title,
             descricao: desc,
             timeStamp: serverTimestamp()
-        }).catch((e)=>{
+        }).catch((e) => {
             console.log(e)
-        }).finally(()=>{
+        }).finally(() => {
             navigate("/");
             window.location.reload()
         })
     }
 
-    return (<div>
-        <form onSubmit={updateTodo}>
-            <div>
-                <label htmlFor="">Título</label>
-                <input onChange={(e) => setTitle(e.target.value)} type="text" value={title}/>
-            </div>
-            <div>
-                <label htmlFor="">Descrição</label>
-                <textarea onChange={(e) => setDesc(e.target.value)} value={desc}/>
-            </div>
-            <button type="submit">Atualizar</button>
-        </form>
-    </div>)
+    return (
+        <div>
+            <form onSubmit={updateTodo}>
+                <div>
+                    <label htmlFor="">Título</label>
+                    <input onChange={(e) => setTitle(e.target.value)} type="text" value={title}/>
+                </div>
+                <div>
+                    <label htmlFor="">Descrição</label>
+                    <textarea onChange={(e) => setDesc(e.target.value)} value={desc}/>
+                </div>
+                <button type="submit">Atualizar</button>
+            </form>
+        </div>
+    )
 }
 
 export default EditTodo;

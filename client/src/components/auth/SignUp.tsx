@@ -2,6 +2,8 @@ import { useState } from "react";
 import { db } from "../../config/firebase-config";
 import { addDoc, collection, serverTimestamp } from "firebase/firestore";
 import firebase from 'firebase/compat/app';
+import { TextField, Button } from '@mui/material';
+import './SignUp.css'
 
 function SignUp (){
 
@@ -30,24 +32,26 @@ function SignUp (){
 
     return (
         <div className="sign-in-container">
-            <form onSubmit={signUp}>
-                <h1>Create Account</h1>
-                <div>
-                    <label htmlFor="">Name</label>
-                    <input type="name" placeholder="Enter your Name" value={name}
-                        onChange={(e) => setName(e.target.value)}/>
+            <form onSubmit={signUp} className="signup-form">
+                <h1 style={{color:'white'}}>Novo por aqui ?</h1>
+                <div className="email-div">
+                    <label style={{color: 'white'}}>Nome</label>
+                    <TextField id="outlined-basic" label="Escreva seu nome" variant="outlined" color='error'
+                        required value={name} onChange={(e) => setName(e.target.value)}/>
                 </div>
-                <div>
-                    <label htmlFor="">Email</label>
-                    <input type="email" placeholder="Enter your email" value={email}
-                        onChange={(e) => setEmail(e.target.value)}/>
+                <div className="email-div">
+                    <label style={{color: 'white'}}>Email</label>
+                    <TextField id="outlined-basic" label="Escreva seu Email" variant="outlined" color='error'
+                        required value={email} onChange={(e) => setEmail(e.target.value)}/>
                 </div>
-                <div>
-                    <label htmlFor="">Password</label>
-                    <input type="password" placeholder="Enter your password" value={password}
-                        onChange={(e) => setPassword(e.target.value)}/>
+                <div className="password-div">
+                    <label style={{color: 'white'}}>Password</label>
+                    <TextField id="outlined-basic" label="Escreva sua senha" variant="outlined" color='error'
+                        type="password" value={password} required onChange={(e) => setPassword(e.target.value)}/>
                 </div>
-                <button type="submit">Log In</button>
+                <div className="submit-div">
+                    <Button type="submit" variant="contained">Log In</Button>
+                </div>
             </form> 
         </div>
     );

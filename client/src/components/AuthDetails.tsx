@@ -6,32 +6,28 @@ import { auth } from "../config/firebase-config";
 
 const AuthDetails = () => {
 
-    const [authUser, setAuthUser] = useState<User | null>(null);
-    const navigate = useNavigate();
+  const [authUser, setAuthUser] = useState<User | null>(null);
+  const navigate = useNavigate();
 
-    useEffect(() => {
-        const listen = onAuthStateChanged(auth, (user: any) => {
-            if (user) {
-                setAuthUser(user);
-            } else {
-                setAuthUser(null);
-            }
-        });
+  useEffect(() => {
+    const listen = onAuthStateChanged(auth, (user: any) => {
+      user ? setAuthUser(user) : setAuthUser(null);
+    });
 
-        return () => {
-            listen();
-        };
-    }, []);
-
-    const userSignOut = () => {
-        firebase.auth().signOut().then(() => {
-            window.localStorage.setItem('auth', 'false');
-        })
-        .catch((error) => console.log(error)).finally(()=>{
-            navigate("/");
-            window.location.reload()
-        })
+    return () => {
+      listen();
     };
+  }, []);
+
+  const userSignOut = () => {
+    firebase.auth().signOut().then(() => {
+        window.localStorage.setItem('auth', 'false');
+    }).catch((error) => console.log(error))
+    .finally(()=>{
+      navigate("/");
+      window.location.reload()
+    })
+  };
 
   return (
     <div>

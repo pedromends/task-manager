@@ -1,5 +1,7 @@
 import { useState } from "react";
 import firebase from 'firebase/compat/app';
+import { TextField, Button } from '@mui/material';
+import './SignIn.css'
 
 function SignIn (){
 
@@ -7,6 +9,13 @@ function SignIn (){
     const [ password, setPassword ] = useState("");
     const [authFlag, setAuth] = useState( false || window.localStorage.getItem('auth') === 'true' );
 
+    const loginWithGoogle = () => {
+		firebase.auth().signInWithPopup(new firebase.auth.GoogleAuthProvider())
+		.then((userCred:any) => {
+        	console.log(userCred)
+		});
+	};
+    
     const signIn = (e: any) => {
 
         e.preventDefault();
@@ -21,19 +30,22 @@ function SignIn (){
 
     return (
         <div className="sign-in-container">
-            <form onSubmit={signIn}>
-                <h1>Log In to your Account</h1>
-                <div>
-                    <label htmlFor="">Email</label>
-                    <input type="email" placeholder="Enter your email" value={email}
-                        onChange={(e) => setEmail(e.target.value)}/>
+            <form onSubmit={signIn} className="main-form">
+                <h1 style={{color:'white'}}>Bem-vindo de volta</h1>
+                <div className="email-div">
+                    <label style={{color: 'white'}}>Email</label>
+                    <TextField id="outlined-basic" label="Escreva seu Email" variant="outlined" color='error'
+                        required value={email} onChange={(e) => setEmail(e.target.value)}/>
                 </div>
-                <div>
-                    <label htmlFor="">Password</label>
-                    <input type="password" placeholder="Enter your password" value={password}
-                        onChange={(e) => setPassword(e.target.value)}/>
+                <div className="password-div">
+                    <label style={{color: 'white'}}>Password</label>
+                    <TextField id="outlined-basic" label="Escreva sua senha" variant="outlined" color='error'
+                        value={password} required onChange={(e) => setPassword(e.target.value)}/>
                 </div>
-                <button type="submit">Log In</button>
+                <div className="submit-div">
+                    <Button type="submit" variant="contained">Log In</Button>
+                    <Button onClick={loginWithGoogle} variant="outlined" color="info">Entrar com Google</Button>
+                </div>
             </form> 
         </div>
     );

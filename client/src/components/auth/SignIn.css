@@ -1,0 +1,32 @@
+.email-div, .password-div {
+    display: flex;
+    align-items: center;
+    gap: 3rem;
+}
+
+.submit-div{
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.email-div > label, .password-div > label, .submit-div > label {
+    text-align: left;
+}
+
+.main-form, .sign-in-container{
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+}
+
+.main-form{
+    padding: 1rem;
+}
+
+.main-form{
+    border-style: solid;
+    border-color: white;;
+    border-width: 2px;
+    border-radius: 1rem;
+}

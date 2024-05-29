@@ -1,0 +1,23 @@
+.home-page {
+    background-color: rgba(29,12,91,255);
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.forms{
+    background-color: rgba(47,29,118,255);
+    gap: 7rem;
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.form-2{
+    background-color: rgba(44,27,115,255);
+    border-top-left-radius: 1rem;
+    border-bottom-left-radius: 1rem;
+}

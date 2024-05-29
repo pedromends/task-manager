@@ -3,9 +3,8 @@ import firebase from 'firebase/compat/app';
 import ListOfTodo from './components/ListOfTodo';
 import EditTodo from './components/EditTodo';
 import AuthDetails from './components/AuthDetails';
-import SignIn from './components/auth/SignIn';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import SignUp from './components/auth/SignUp';
+import HomePage from './pages/HomePage';
 import 'firebase/compat/auth';
 import './App.css';
 import './config/firebase-config.js';
@@ -26,14 +25,6 @@ function App() {
 			}
 		});
 	}, []);
-
-
-  	const loginWithGoogle = () => {
-		firebase.auth().signInWithPopup(new firebase.auth.GoogleAuthProvider())
-		.then((userCred:any) => {
-        	console.log(userCred)
-		});
-	};
 	
   return (
 		<div className="App">
@@ -46,13 +37,12 @@ function App() {
 								<ListOfTodo token={token} />
 							</div>
 							) : (
-							<div>
-								<SignUp/>
-								<SignIn/>
-								<button onClick={loginWithGoogle}>Login with Google</button>
-							</div>
-						)
-					}/>
+								<main className='main'>
+									<HomePage/>
+								</main>
+							)
+						}
+					/>
 					<Route path='/edit' element={auth ? (<div><EditTodo/></div>):(<div>teste</div>)}/>
 				</Routes>
 			</BrowserRouter>
