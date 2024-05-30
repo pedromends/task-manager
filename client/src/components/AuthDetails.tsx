@@ -28,18 +28,18 @@ const AuthDetails = () => {
     .finally(()=>{
       navigate("/");
       window.location.reload()
-    })
+    });
   };
 
   return (
     <div>
       {authUser ? (
         <div className="bar">
-          <p>{`Signed In as ${authUser.email}`}</p>
+          <p>{`Logado como ${authUser.email}`}</p>
           <Button onClick={userSignOut}>Sair</Button>
         </div>
       ) : (
-        <p>Signed Out</p>
+        <p>Sair</p>
       )}
     </div>
   );

@@ -18,7 +18,7 @@ function createData(
 	id: string,
 	title: string,
 	description: string,
-): Data {
+) : Data {
 	return { id, title, description };
 }
 
@@ -34,7 +34,6 @@ export default function CrudGrid() {
 	};
 
 	const handleEdit = (id: GridRowId) => () => {
-		console.log(id);
 		let aux:Data = {
 			id: '',
 			title: '',
@@ -42,15 +41,12 @@ export default function CrudGrid() {
 		};
 		
 		rows.forEach((row) => {
-			if (row.id === id) {
-				aux = row;  // Atualiza 'aux' se encontrar o id correspondente
-			}
+			if (row.id === id)
+				aux = row;
 		});
 		
-		if (aux !== null) {  // Verifica se 'aux' foi atualizado
+		if (aux !== null) 
 			navigate("/edit", {state: {id: aux.id, title: aux.title, desc: aux.description}});
-		}
-		
 	}
 
 	const handleDelete = (id: GridRowId) => () => {
@@ -79,8 +75,8 @@ export default function CrudGrid() {
 		{
 			field: 'title',
 			headerName: 'Título',
-			editable: false,
 			headerClassName: 'std-header',
+			editable: false,
 			width:200,
 			headerAlign: 'center',
 			align:'center'
@@ -95,13 +91,13 @@ export default function CrudGrid() {
 			align:'center'
 		},
 		{
-			field: 'actions',
-			type: 'actions',
+			field: 'action',
+			headerName: 'Ações',
 			headerClassName: 'std-header',
+			type: 'actions',
 			headerAlign: 'center',
 			align:'center',
 			width:200,
-			headerName: 'Actions',
 			cellClassName: 'actions',
 			getActions: ({ id }) => {
 				return [

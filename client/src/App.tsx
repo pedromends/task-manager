@@ -1,10 +1,10 @@
 import {useState, useEffect } from 'react';
 import firebase from 'firebase/compat/app';
-import ListOfTodo from './pages/ListOfTodo';
+import TodoManager from './pages/TodoManager';
 import EditTodo from './components/EditTodo';
 import AuthDetails from './components/AuthDetails';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import HomePage from './pages/LoginPage';
+import LoginPage from './pages/LoginPage';
 import 'firebase/compat/auth';
 import './App.css';
 import './config/firebase-config.js';
@@ -32,18 +32,24 @@ function App() {
 				<Routes>
 					<Route path='/' index 
 						element={auth ? (
-							<main className='listing'>
+							<div>
 								<AuthDetails/>
-								<ListOfTodo token={token} />
-							</main>
+								<TodoManager />
+							</div>
 							) : (
 								<main className='main'>
-									<HomePage/>
+									<LoginPage/>
 								</main>
 							)
 						}
 					/>
-					<Route path='/edit' element={auth ? (<div><EditTodo/></div>):(<HomePage/>)}/>
+					<Route path='/edit' element={
+						auth ? (
+							<div>
+								<EditTodo/>
+							</div> ) : ( <LoginPage/> )
+						}
+					/>
 				</Routes>
 			</BrowserRouter>
 		</div>
