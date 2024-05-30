@@ -1,16 +1,12 @@
 import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
-import AddIcon from '@mui/icons-material/Add';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/DeleteOutlined';
-import { addDoc, collection, serverTimestamp, getDocs, deleteDoc, doc } from 'firebase/firestore';
+import { collection, getDocs, deleteDoc, doc } from 'firebase/firestore';
 import { db } from "../../config/firebase-config"
 import { useNavigate } from "react-router-dom";
-import {
-	GridRowModesModel, GridRowModes, DataGrid, GridColDef, GridToolbarContainer,
-	GridActionsCellItem, GridEventListener, GridRowId, GridRowEditStopReasons, GridSlots
-} from '@mui/x-data-grid';
+import { DataGrid, GridColDef, GridActionsCellItem, GridEventListener, GridRowId, GridRowEditStopReasons, useGridApiRef } from '@mui/x-data-grid';
 import { useState, useEffect } from 'react';
+import './CrudGrid.css'
 
 interface Data {
 	id: string,
@@ -26,45 +22,6 @@ function createData(
 	return { id, title, description };
 }
 
-interface EditToolbarProps {
-	setRows: (newRows: (oldRows: Data) => Data) => void;
-	setRowModesModel: (
-		newModel: (oldModel: GridRowModesModel) => GridRowModesModel,
-	) => void;
-}
-
-function EditToolbar(props: EditToolbarProps) {
-	const navigate = useNavigate();
-	const [title, setTitle] = useState("");
-	const [desc, setDesc] = useState("");
-
-	const handleAdd = async (e: any) => {
-		e.preventDefault()
-		try {
-			await addDoc(collection(db, 'tasks'), {
-				titulo: title,
-				descricao: desc,
-				timeStamp: serverTimestamp()
-			}).catch((err) => {
-				console.log(err)
-			}).finally(() => {
-				navigate("/");
-				window.location.reload()
-			})
-		} catch (err) {
-			console.log(err)
-		}
-	}
-
-	return (
-		<GridToolbarContainer>
-			<Button color="primary" startIcon={<AddIcon />} onClick={handleAdd}>
-				Add record
-			</Button>
-		</GridToolbarContainer>
-	);
-}
-
 export default function CrudGrid() {
 
 	const [rows, setRows] = useState<Data[]>([]);
@@ -77,16 +34,27 @@ export default function CrudGrid() {
 	};
 
 	const handleEdit = (id: GridRowId) => () => {
-		let aux = rows.map((row) => {
-			if(row.id == id){
-				return row
+		console.log(id);
+		let aux:Data = {
+			id: '',
+			title: '',
+			description: ''
+		};
+		
+		rows.forEach((row) => {
+			if (row.id === id) {
+				aux = row;  // Atualiza 'aux' se encontrar o id correspondente
 			}
-		})
-		navigate("/edit", {state: {id:aux[0]?.id,title: aux[0]?.title, desc: aux[0]?.description}})
-		console.log(aux)
+		});
+		
+		if (aux !== null) {  // Verifica se 'aux' foi atualizado
+			navigate("/edit", {state: {id: aux.id, title: aux.title, desc: aux.description}});
+		}
+		
 	}
 
 	const handleDelete = (id: GridRowId) => () => {
+		console.log(id)
 		try {
 			deleteDoc(doc(db, 'tasks', id.toString())).then(() => {
 				alert('deletado com sucesso')
@@ -108,26 +76,34 @@ export default function CrudGrid() {
 	};
 
 	const columns: GridColDef[] = [
-		{ field: 'title', headerName: 'Título', width: 180, editable: true },
+		{
+			field: 'title',
+			headerName: 'Título',
+			editable: false,
+			headerClassName: 'std-header',
+			width:200,
+			headerAlign: 'center',
+			align:'center'
+		},
 		{
 			field: 'description',
 			headerName: 'Descrição',
-			type: 'number',
-			width: 80,
-			align: 'left',
-			headerAlign: 'left',
-			editable: true,
+			headerClassName: 'std-header',
+			width:200,
+			headerAlign: 'center',
+			editable: false,
+			align:'center'
 		},
 		{
 			field: 'actions',
 			type: 'actions',
+			headerClassName: 'std-header',
+			headerAlign: 'center',
+			align:'center',
+			width:200,
 			headerName: 'Actions',
-			width: 100,
 			cellClassName: 'actions',
 			getActions: ({ id }) => {
-
-				console.log(id)
-
 				return [
 					<GridActionsCellItem
 						icon={<EditIcon />}
@@ -164,26 +140,40 @@ export default function CrudGrid() {
 
 	return (
 		<Box
-			sx={{
-				height: 500,
-				width: '40%',
+			sx={{	
 				'& .actions': {
-					color: 'text.secondary',
+					color: 'red',
 				},
 				'& .textPrimary': {
-					color: 'text.primary',
+					color: 'green',
 				},
+				backgroundColor: 'white',
+				color:'white',
+				borderStyle: 'solid',
+				borderWidth: '2px',
+				borderRadius: '2rem',
+				borderColor: '#006666'
 			}}
 		>
+			<h1 style={{color: '#006666'}}>Tarefas</h1>
 			<DataGrid
+				sx={{
+					color:'#006666',
+					backgroundColor: 'white',
+					textAlign:'center',
+					borderRadius: '2rem'
+				}}
 				rows={rows}
+				initialState={{
+					pagination: { paginationModel: { pageSize: 5 } },
+				}}
 				columns={columns}
+				pagination
+				rowSelection
+				pageSizeOptions={[5,10,25]}
 				editMode="row"
 				onRowEditStop={handleRowEditStop}
 				processRowUpdate={processRowUpdate}
-				slots={{
-					toolbar: EditToolbar as GridSlots['toolbar'],
-				}}
 			/>
 		</Box>
 	);

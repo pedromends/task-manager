@@ -2,3 +2,7 @@
     display: flex;
     justify-content: center;
 }
+
+.listing{
+    background-color: rgba(29,12,91,255);
+}

@@ -16,7 +16,7 @@ function SignUp (){
         e.preventDefault();
         console.log(email, name, password)
         firebase.auth()
-            .createUserWithEmailAndPassword(email, password).then((response)=>{
+            .createUserWithEmailAndPassword(email, password).then((response) => {
                 console.log(response);
                 addDoc(collection(db, 'users'), {
                     nome: name,

@@ -1,6 +1,6 @@
 import {useState, useEffect } from 'react';
 import firebase from 'firebase/compat/app';
-import ListOfTodo from './components/ListOfTodo';
+import ListOfTodo from './pages/ListOfTodo';
 import EditTodo from './components/EditTodo';
 import AuthDetails from './components/AuthDetails';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
@@ -32,10 +32,10 @@ function App() {
 				<Routes>
 					<Route path='/' index 
 						element={auth ? (
-							<div>
+							<main className='listing'>
 								<AuthDetails/>
 								<ListOfTodo token={token} />
-							</div>
+							</main>
 							) : (
 								<main className='main'>
 									<HomePage/>
@@ -43,7 +43,7 @@ function App() {
 							)
 						}
 					/>
-					<Route path='/edit' element={auth ? (<div><EditTodo/></div>):(<div>teste</div>)}/>
+					<Route path='/edit' element={auth ? (<div><EditTodo/></div>):(<HomePage/>)}/>
 				</Routes>
 			</BrowserRouter>
 		</div>

@@ -31,14 +31,14 @@ function SignIn (){
     return (
         <div className="sign-in-container">
             <form onSubmit={signIn} className="main-form">
-                <h1 style={{color:'white'}}>Bem-vindo de volta</h1>
+                <h1 style={{color: 'rgba(0,102,102,255)'}}>Bem-vindo de volta</h1>
                 <div className="email-div">
-                    <label style={{color: 'white'}}>Email</label>
+                    <label style={{color: 'rgba(0,102,102,255)'}}>Email</label>
                     <TextField id="outlined-basic" label="Escreva seu Email" variant="outlined" color='error'
                         required value={email} onChange={(e) => setEmail(e.target.value)}/>
                 </div>
                 <div className="password-div">
-                    <label style={{color: 'white'}}>Password</label>
+                    <label style={{color: 'rgba(0,102,102,255)'}}>Password</label>
                     <TextField id="outlined-basic" label="Escreva sua senha" variant="outlined" color='error'
                         value={password} required onChange={(e) => setPassword(e.target.value)}/>
                 </div>

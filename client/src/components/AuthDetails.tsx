@@ -3,6 +3,8 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import firebase from 'firebase/compat/app';
 import { auth } from "../config/firebase-config";
+import { Button } from "@mui/material";
+import './style.css';
 
 const AuthDetails = () => {
 
@@ -32,10 +34,10 @@ const AuthDetails = () => {
   return (
     <div>
       {authUser ? (
-        <>
+        <div className="bar">
           <p>{`Signed In as ${authUser.email}`}</p>
-          <button onClick={userSignOut}>Sign Out</button>
-        </>
+          <Button onClick={userSignOut}>Sair</Button>
+        </div>
       ) : (
         <p>Signed Out</p>
       )}

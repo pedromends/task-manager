@@ -3,7 +3,7 @@ import { useState } from "react";
 import { doc, serverTimestamp, setDoc } from "firebase/firestore";
 import { useNavigate } from "react-router-dom";
 import { db } from "../config/firebase-config";
-
+import './style.css'
 function EditTodo() {
 
     const { state } = useLocation();
