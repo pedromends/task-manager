@@ -4,7 +4,7 @@ import ListOfTodo from './pages/ListOfTodo';
 import EditTodo from './components/EditTodo';
 import AuthDetails from './components/AuthDetails';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import HomePage from './pages/HomePage';
+import HomePage from './pages/LoginPage';
 import 'firebase/compat/auth';
 import './App.css';
 import './config/firebase-config.js';

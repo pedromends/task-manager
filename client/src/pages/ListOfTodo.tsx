@@ -3,7 +3,7 @@ import { addDoc, collection, serverTimestamp, getDocs, deleteDoc, doc } from 'fi
 import { db } from "../config/firebase-config"
 import { useNavigate } from "react-router-dom";
 import CrudGrid from '../components/table/CrudGrid';
-import './style/ListOfTodo.css'
+import './ListOfTodo.css'
 import { Button, TextField } from '@mui/material';
 
 export default function ListOfTodo({ token } : { token: string }) {
@@ -19,7 +19,7 @@ export default function ListOfTodo({ token } : { token: string }) {
 				titulo: title,
 				descricao: desc,
 				timeStamp: serverTimestamp()
-			}).catch((err)=>{
+			}).catch( (err) => {
 				console.log(err)
 			}).finally(() => {
 				navigate("/");

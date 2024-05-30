@@ -1,4 +1,4 @@
-.list-page{
+.list-page {
     display: flex;
     flex-direction: column;
     height: auto;
@@ -8,19 +8,19 @@
     background: linear-gradient(90deg, rgba(240,247,247,1) 70%, rgba(168,204,204,1) 70%);
 }
 
-.list-page h1{
+.list-page h1 {
     text-align: center;
     color: white;
 }
 
-.crud-parent{
+.crud-parent {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 3rem;   
+    gap: 3rem;
 }
 
-.new-task{
+.new-task {
     background-color: #006666;
     padding-left: 3rem;
     padding-right: 3rem;
@@ -33,21 +33,21 @@
     gap: 2rem;
 }
 
-.input-1{
+.input-1 {
     background-color: 'white';
     border-radius: '1rem';
 }
 
-.email-1{
+.email-1 {
     display: flex;
     flex-direction: column;
 }
 
-.password-1{
+.password-1 {
     display: flex;
     flex-direction: column;
 }
 
-.submit-task{
+.submit-task {
     margin-bottom: 2rem;
 }

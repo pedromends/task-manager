@@ -33,24 +33,24 @@ function SignUp (){
     return (
         <div className="sign-in-container">
             <form onSubmit={signUp} className="signup-form">
-                <h1 style={{color:'white'}}>Novo por aqui ?</h1>
+                <h1 style={{color:'white', alignSelf: 'center'}}>Novo por aqui?</h1>
                 <div className="email-div">
-                    <label style={{color: 'white'}}>Nome</label>
-                    <TextField id="outlined-basic" label="Escreva seu nome" variant="outlined" color='error'
+                    <label style={{color: 'white', alignSelf: 'start', fontWeight: 'bold'}}>Nome</label>
+                    <TextField id="outlined-basic" variant="outlined" color='error' sx={{width:'20rem', backgroundColor: 'white', borderRadius: '1rem'}}
                         required value={name} onChange={(e) => setName(e.target.value)}/>
                 </div>
                 <div className="email-div">
-                    <label style={{color: 'white'}}>Email</label>
-                    <TextField id="outlined-basic" label="Escreva seu Email" variant="outlined" color='error'
+                    <label style={{color: 'white', alignSelf: 'start', fontWeight: 'bold'}}>Email</label>
+                    <TextField id="outlined-basic" variant="outlined" color='error' sx={{width:'20rem', backgroundColor: 'white', borderRadius: '1rem'}}
                         required value={email} onChange={(e) => setEmail(e.target.value)}/>
                 </div>
                 <div className="password-div">
-                    <label style={{color: 'white'}}>Password</label>
-                    <TextField id="outlined-basic" label="Escreva sua senha" variant="outlined" color='error'
+                    <label style={{color: 'white', alignSelf: 'start', fontWeight: 'bold'}}>Password</label>
+                    <TextField id="outlined-basic" variant="outlined" color='error' sx={{width:'20rem', backgroundColor: 'white', borderRadius: '1rem'}}
                         type="password" value={password} required onChange={(e) => setPassword(e.target.value)}/>
                 </div>
                 <div className="submit-div">
-                    <Button type="submit" variant="contained">Log In</Button>
+                    <Button type="submit" variant="contained" sx={{backgroundColor:'rgba(168,204,204,1)', color:'#006666'}}>Login</Button>
                 </div>
             </form> 
         </div>

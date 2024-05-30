@@ -1,7 +1,8 @@
 .email-div, .password-div {
     display: flex;
+    flex-direction: column;
     align-items: center;
-    gap: 3rem;
+    justify-content: start;
 }
 
 .submit-div{
@@ -18,6 +19,9 @@
     display: flex;
     flex-direction: column;
     gap: 3rem;
+    border-color: white;
+    border-style: solid;
+    border-radius: 2rem;
 }
 
 .main-form{
