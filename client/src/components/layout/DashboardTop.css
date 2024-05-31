@@ -1,0 +1,42 @@
+.main-banner {
+    background-color: #006666;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 2rem;
+    padding: 2rem;
+    gap: 20rem;
+}
+
+.main-banner p {
+    color: white;
+    font-size: large;
+    font-weight: 500;
+}
+
+.dash-skeleton {
+    display: flex;
+    gap:10rem;
+}
+
+.time-card {
+    display: flex;
+    border-radius: 2rem;
+    gap: 1rem;
+}
+
+.time-cards {
+    background-color: white;
+    padding:2rem;
+    border-radius: 2rem;
+    display: flex;
+    flex-direction: column;
+    border-style: solid;
+    border-width: 2px;
+    border-color:#006666;
+}
+
+.time-cards-children {
+    display: flex;
+    gap: 4rem;
+}

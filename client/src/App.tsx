@@ -34,7 +34,7 @@ function App() {
 						element={auth ? (
 							<div>
 								<AuthDetails/>
-								<TodoManager />
+								<TodoManager/>
 							</div>
 							) : (
 								<main className='main'>

@@ -35,8 +35,14 @@ const AuthDetails = () => {
     <div>
       {authUser ? (
         <div className="bar">
-          <p>{`Logado como ${authUser.email}`}</p>
-          <Button onClick={userSignOut}>Sair</Button>
+          <div style={{display: 'flex', justifyItems: 'center', alignItems: 'center', gap: '1rem'}}>
+            <img src="./assets/hourglass.svg" style={{width: '3rem'}} alt="" />
+            The Hourglass
+          </div>
+          <div style={{display: 'flex', justifyItems: 'center', alignItems: 'center'}}>
+            <p>{`Logado como ${authUser.email}`}</p>
+            <Button onClick={userSignOut}>Sair</Button>
+          </div>
         </div>
       ) : (
         <p>Sair</p>

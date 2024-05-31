@@ -148,7 +148,8 @@ export default function CrudGrid() {
 				borderStyle: 'solid',
 				borderWidth: '2px',
 				borderRadius: '2rem',
-				borderColor: '#006666'
+				borderColor: '#006666',
+				marginTop: '5rem'
 			}}
 		>
 			<h1 style={{color: '#006666'}}>Tarefas</h1>
@@ -157,7 +158,7 @@ export default function CrudGrid() {
 					color:'#006666',
 					backgroundColor: 'white',
 					textAlign:'center',
-					borderRadius: '2rem'
+					borderRadius: '2rem',
 				}}
 				rows={rows}
 				initialState={{
