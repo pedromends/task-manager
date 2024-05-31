@@ -18,14 +18,17 @@
 .main-form, .sign-in-container{
     display: flex;
     flex-direction: column;
-    gap: 3rem;
+    gap: 1rem;
     border-color: white;
     border-style: solid;
     border-radius: 2rem;
 }
 
-.main-form{
-    padding: 1rem;
+.main-form {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    padding-left: 3rem;
+    padding-right: 3rem;
 }
 
 .main-form{

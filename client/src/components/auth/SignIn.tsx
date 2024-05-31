@@ -31,6 +31,7 @@ function SignIn (){
     return (
         <div className="sign-in-container">
             <form onSubmit={signIn} className="main-form">
+                <img src="./assets/hourglass1.svg" alt="" style={{width: '10rem', alignSelf: 'center'}}/>
                 <h1 style={{color: 'rgba(0,102,102,255)'}}>Bem-vindo de volta!</h1>
                 <div className="email-div">
                     <label style={{color: 'rgba(0,102,102,255)', alignSelf: 'start'}}>Email</label>
@@ -38,13 +39,16 @@ function SignIn (){
                         required value={email} onChange={(e) => setEmail(e.target.value)}/>
                 </div>
                 <div className="password-div">
-                    <label style={{color: 'rgba(0,102,102,255)', alignSelf: 'start'}}>Password</label>
+                    <label style={{color: 'rgba(0,102,102,255)', alignSelf: 'start'}}>Senha</label>
                     <TextField id="outlined-basic" label="Escreva sua senha" variant="outlined" color='error'  sx={{alignSelf: 'start', width:'100%'}}
                         value={password} required onChange={(e) => setPassword(e.target.value)}/>
                 </div>
                 <div className="submit-div">
-                    <Button type="submit" variant="contained" sx={{backgroundColor:'#006666'}}>Login</Button>
-                    <Button onClick={loginWithGoogle} variant="outlined" color="info">Entrar com Google</Button>
+                    <Button type="submit" variant="contained" sx={{backgroundColor:'#006666', ":hover":{backgroundColor:'rgba(168,204,204,1)', color: '#006666'}}}>Login</Button>
+                    <Button onClick={loginWithGoogle} variant="outlined" sx={{ display: 'flex', gap:'1rem', paddingTop: '0rem', paddingBottom: '0rem' }}>
+                        <img src="./assets/google.svg" style={{width:'2rem'}} alt="Google Icon" />
+                        <p>Entrar com Google</p>
+                    </Button>
                 </div>
             </form> 
         </div>
