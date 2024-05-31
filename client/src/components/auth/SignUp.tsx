@@ -33,7 +33,7 @@ function SignUp (){
         <div className="sign-in-container">
             <form onSubmit={signUp} className="signup-form">
                 <img src="./assets/hourglass.svg" alt="" style={{width: '10rem', alignSelf: 'center'}}/>
-                {/* <h1 style={{color:'white', alignSelf: 'center'}}>Novo por aqui?</h1> */}
+                <h1 style={{color:'white', alignSelf: 'center'}}>The Hourglass</h1>
                 <div className="email-div">
                     <label style={{color: 'white', alignSelf: 'start', fontWeight: 'bold'}}>Nome</label>
                     <TextField id="outlined-basic" variant="outlined" sx={{width:'20rem', backgroundColor: 'rgba(168,204,204,1)', borderRadius: '1rem'}}

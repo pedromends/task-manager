@@ -39,7 +39,7 @@ export default function ListOfTodo() {
                             required value={title} onChange={(e) => setTitle(e.target.value)}/>
                 </div>
                 <div className="password-1">
-                    <label style={{color: 'white', fontWeight: 'bold'}}>Password</label>
+                    <label style={{color: 'white', fontWeight: 'bold'}}>Descrição</label>
                     <TextField id="outlined-basic" variant="outlined" color='error' sx={{backgroundColor: 'white', borderRadius: '1rem'}}
                         value={desc} required onChange={(e) => setDesc(e.target.value)}/>
                 </div>
