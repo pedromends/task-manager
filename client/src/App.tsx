@@ -1,7 +1,7 @@
 import {useState, useEffect } from 'react';
 import firebase from 'firebase/compat/app';
 import TodoManager from './pages/TodoManager';
-import EditTodo from './components/EditTodo';
+import EditTodo from './pages/EditTodo';
 import AuthDetails from './components/AuthDetails';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import LoginPage from './pages/LoginPage';

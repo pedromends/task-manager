@@ -34,18 +34,18 @@ export default function ListOfTodo() {
             <form onSubmit={handleAdd} className='new-task'>
                 <h1>Criar nova tarefa</h1>
                 <div className="email-1">
-                    <label style={{color: 'white', fontWeight: 'bold'}}>Título</label>
-                    <TextField id="outlined-basic" variant="outlined" color='primary' sx={{backgroundColor: 'white', borderRadius: '1rem'}}
+                    <label style={{color: '#006666', fontWeight: 'bold'}}>Título</label>
+                    <TextField id="outlined-basic" variant="outlined" color='primary'
                             required value={title} onChange={(e) => setTitle(e.target.value)}/>
                 </div>
                 <div className="password-1">
-                    <label style={{color: 'white', fontWeight: 'bold'}}>Descrição</label>
-                    <TextField id="outlined-basic" variant="outlined" color='error' sx={{backgroundColor: 'white', borderRadius: '1rem'}}
+                    <label style={{color: '#006666', fontWeight: 'bold'}}>Descrição</label>
+                    <TextField id="outlined-basic" variant="outlined" color='error'
                         value={desc} required onChange={(e) => setDesc(e.target.value)}/>
                 </div>
 
                 <div className="submit-task">
-                    <Button type="submit" variant="contained" sx={{}}>Salvar alterações</Button>
+					<Button type="submit" variant="contained" sx={{backgroundColor:'#006666', ":hover":{backgroundColor:'rgba(168,204,204,1)', color: '#006666'}}}>Salvar alterações</Button>
                 </div>
             </form>
 		</main>

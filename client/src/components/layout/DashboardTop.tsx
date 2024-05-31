@@ -19,7 +19,7 @@ export default function DashboardTop(){
                                 <img src="./assets/clock.svg" style={{width: '2rem', paddingLeft: '1rem', paddingRight: '1rem'}} alt=""/>
                             </div>
                             <div>
-                                <p style={{color: '#006666'}}>Data de Início</p>
+                                <p style={{color: '#006666'}}>Data de Início:</p>
                                 <p style={{fontWeight: 'bold', color: '#006666'}}>27/05/2024</p>
                             </div>
                         </div>
@@ -28,7 +28,7 @@ export default function DashboardTop(){
                                 <img src="./assets/calendar.svg" style={{width: '2rem', paddingLeft: '1rem', paddingRight: '1rem'}} alt=""/>
                             </div>
                             <div>
-                                <p style={{color: '#006666'}}>Data de Término</p>
+                                <p style={{color: '#006666'}}>Data de Término:</p>
                                 <p style={{fontWeight: 'bold', color: '#006666'}}>03/06/2024</p>
                             </div>
                         </div>

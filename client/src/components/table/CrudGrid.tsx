@@ -1,12 +1,13 @@
 import Box from '@mui/material/Box';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/DeleteOutlined';
-import { collection, getDocs, deleteDoc, doc } from 'firebase/firestore';
+import { collection, getDocs, deleteDoc, doc, query, where, getDoc } from 'firebase/firestore';
 import { db } from "../../config/firebase-config"
 import { useNavigate } from "react-router-dom";
-import { DataGrid, GridColDef, GridActionsCellItem, GridEventListener, GridRowId, GridRowEditStopReasons, useGridApiRef } from '@mui/x-data-grid';
+import { DataGrid, GridColDef, GridActionsCellItem, GridEventListener, GridRowId, GridRowEditStopReasons, GridSlots, GridToolbarContainer } from '@mui/x-data-grid';
 import { useState, useEffect } from 'react';
 import './CrudGrid.css'
+import AddDialog from '../dialog/AddDialog';
 
 interface Data {
 	id: string,
@@ -33,8 +34,31 @@ export default function CrudGrid() {
 		}
 	};
 
+	function EditToolbar() {
+	  
+		return (
+		  <GridToolbarContainer>
+			<div style={{width: '100%', display: 'flex', justifyContent: 'space-between', marginTop: '2rem', paddingLeft: '2rem', paddingRight: '2rem'}}>
+				<AddDialog/>
+				<div style={{display: 'flex', gap: '1rem', borderStyle: 'solid', borderWidth: '2px', borderColor: '#006666', borderRadius: '1rem', paddingLeft: '1rem'}}>
+					<img src="./assets/search.svg" alt="" style={{width: '20px'}}/>
+					<input type="text" placeholder='Pesquisar tarefas' style={{borderStyle: 'none'}} onKeyDown={(e)=> {
+						if(e.key === 'Enter'){
+							searchData();
+						}
+					}}/>
+				</div>
+			</div>
+		  </GridToolbarContainer>
+		);
+	}
+
+	const searchData = () => {
+		
+	}
+
 	const handleEdit = (id: GridRowId) => () => {
-		let aux:Data = {
+		let aux: Data = {
 			id: '',
 			title: '',
 			description: ''
@@ -164,6 +188,9 @@ export default function CrudGrid() {
 				initialState={{
 					pagination: { paginationModel: { pageSize: 5 } },
 				}}
+				slots={{
+					toolbar: EditToolbar as GridSlots['toolbar'],
+				  }}
 				columns={columns}
 				pagination
 				rowSelection

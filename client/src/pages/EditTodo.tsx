@@ -3,8 +3,9 @@ import { useState } from "react";
 import { doc, serverTimestamp, setDoc } from "firebase/firestore";
 import { useNavigate } from "react-router-dom";
 import { db } from "../config/firebase-config";
-import './style.css'
+import '../components/style.css'
 import { Button, TextField } from "@mui/material";
+
 function EditTodo() {
 
     const { state } = useLocation();
@@ -38,12 +39,12 @@ function EditTodo() {
                 </div>
             </div>
             <div className="edit-page">
-                <form onSubmit={updateTodo} className='new-task'>
+                <form onSubmit={updateTodo} className='edit-task'>
                     <div style={{backgroundColor: 'transparent', display: 'flex', alignItems:'center', color: 'white', gap: '1rem'}} onClick={()=>window.history.back()}>
                         <img src="./assets/left-arrow.svg" alt="" style={{height: '30px'}}/>
                         <p>Retornar</p>
                     </div>
-                    <h1>Editar tarefa</h1>
+                    <h1 style={{color: 'white', textAlign:'start', textDecoration: 'underline', textDecorationColor: 'rgba(168,204,204,1)', textDecorationThickness: '3px'}}>Editar Tarefa</h1>
                     <div className="email-1">
                         <label style={{color: 'white', fontWeight: 'bold'}}>Título</label>
                         <TextField id="outlined-basic" variant="outlined" color='primary' sx={{backgroundColor: 'white', borderRadius: '1rem'}}

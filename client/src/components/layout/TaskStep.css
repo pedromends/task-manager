@@ -10,6 +10,7 @@
     border-style: solid;
     padding: 1rem;
     transition: 0.3s all;
+    border-width: 2px;
 }
 
 .step-card p {

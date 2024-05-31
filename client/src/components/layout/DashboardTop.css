@@ -16,18 +16,19 @@
 
 .dash-skeleton {
     display: flex;
+    justify-content: center;
     gap:10rem;
 }
 
 .time-card {
     display: flex;
-    border-radius: 2rem;
+    border-radius: 1rem;
     gap: 1rem;
 }
 
 .time-cards {
     background-color: white;
-    padding:2rem;
+    padding: 1rem;
     border-radius: 2rem;
     display: flex;
     flex-direction: column;

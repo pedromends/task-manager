@@ -4,11 +4,12 @@
     height: auto;
     padding-top: 3rem;
     padding-bottom: 3rem;
+    margin:2rem;
 }
 
 .new-task h1 {
     text-align: center;
-    color: white;
+    color: #006666;
 }
 
 .crud-parent {
@@ -19,11 +20,10 @@
 }
 
 .new-task {
-    background-color: #006666;
     padding-left: 3rem;
     padding-right: 3rem;
     border-style: solid;
-    border-color: white;
+    border-color: #006666;
     border-width: 2px;
     border-radius: 1rem;
     display: flex;
@@ -32,7 +32,7 @@
 }
 
 .input-1 {
-    background-color: 'white';
+    background-color: '#006666';
     border-radius: '1rem';
 }
 

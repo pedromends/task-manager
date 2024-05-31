@@ -12,7 +12,6 @@ export default function TodoManager() {
 			</div>
 			<div className='crud-parent'>
 				<div className="left-panel">
-					{/* <NewTask/> */}
 					<TaskStep/>
 				</div>
 				<div className="right-panel">
