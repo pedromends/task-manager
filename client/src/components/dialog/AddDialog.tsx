@@ -40,7 +40,7 @@ export default function AddDialog() {
 
   return (
     <div>
-      <Button variant="outlined" onClick={handleClickOpen} sx={{backgroundColor:'#006666', ":hover":{backgroundColor:'rgba(168,204,204,1)'}, color: 'white'}}>
+      <Button variant="outlined" onClick={handleClickOpen} sx={{backgroundColor:'#006666', ":hover":{backgroundColor:'white', color: '#006666'}, color: 'white'}}>
         + Adicionar Tarefa
       </Button>
       <SimpleDialog
