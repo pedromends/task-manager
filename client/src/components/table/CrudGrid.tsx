@@ -5,11 +5,10 @@ import { collection, getDocs, deleteDoc, doc } from 'firebase/firestore';
 import { db } from "../../config/firebase-config"
 import { useNavigate } from "react-router-dom";
 import { DataGrid, GridColDef, GridActionsCellItem, GridEventListener, GridRowId, GridRowEditStopReasons, GridSlots, GridToolbarContainer } from '@mui/x-data-grid';
-import { useState, useEffect, SetStateAction } from 'react';
+import { useState, useEffect } from 'react';
 import './CrudGrid.css'
 import AddDialog from '../dialog/AddDialog';
 import SearchDialog from '../dialog/SearchDialog';
-
 
 interface Data {
 	id: string,
@@ -149,8 +148,7 @@ export default function CrudGrid() {
 	}, []);
 
 	return (
-		<Box
-			sx={{	
+		<Box sx={{	
 				'& .actions': {
 					color: 'red',
 				},
@@ -165,7 +163,7 @@ export default function CrudGrid() {
 				borderColor: '#006666',
 				marginTop: '5rem'
 			}}
-		>
+			>
 			<h1 style={{color: '#006666'}}>Tarefas</h1>
 			<DataGrid
 				sx={{
