@@ -1,4 +1,4 @@
-```markdown
+
 # Projeto de Busca com React, Node, Express, Firebase, Typescript e Algolia
 
 ## Resumo do Projeto
@@ -75,4 +75,3 @@ Algolia é um serviço de busca em tempo real que oferece uma API poderosa para 
 ## Conclusão
 
 Este projeto demonstra como várias tecnologias modernas podem ser integradas para criar uma aplicação web robusta e eficiente. Cada tecnologia traz seus próprios benefícios, e a combinação delas resulta em uma experiência de usuário otimizada e uma arquitetura de aplicação escalável e fácil de manter.
-```
