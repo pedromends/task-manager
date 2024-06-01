@@ -19,6 +19,6 @@ export const db = getFirestore(app)
 
 const functions = getFunctions(app)
 connectFunctionsEmulator(functions, "localhost", 5000);
-connectFirestoreEmulator(db, 'localhost', 5000)
+//connectFirestoreEmulator(db, 'localhost', 5000)
 
 export default firebase

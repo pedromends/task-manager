@@ -1,13 +1,15 @@
 import Box from '@mui/material/Box';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/DeleteOutlined';
-import { collection, getDocs, deleteDoc, doc, query, where, getDoc } from 'firebase/firestore';
+import { collection, getDocs, deleteDoc, doc } from 'firebase/firestore';
 import { db } from "../../config/firebase-config"
 import { useNavigate } from "react-router-dom";
 import { DataGrid, GridColDef, GridActionsCellItem, GridEventListener, GridRowId, GridRowEditStopReasons, GridSlots, GridToolbarContainer } from '@mui/x-data-grid';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, SetStateAction } from 'react';
 import './CrudGrid.css'
 import AddDialog from '../dialog/AddDialog';
+import SearchDialog from '../dialog/SearchDialog';
+
 
 interface Data {
 	id: string,
@@ -28,6 +30,7 @@ export default function CrudGrid() {
 	const [rows, setRows] = useState<Data[]>([]);
 	const navigate = useNavigate();
 	
+	
 	const handleRowEditStop: GridEventListener<'rowEditStop'> = (params, event) => {
 		if (params.reason === GridRowEditStopReasons.rowFocusOut) {
 			event.defaultMuiPrevented = true;
@@ -40,21 +43,10 @@ export default function CrudGrid() {
 		  <GridToolbarContainer>
 			<div style={{width: '100%', display: 'flex', justifyContent: 'space-between', marginTop: '2rem', paddingLeft: '2rem', paddingRight: '2rem'}}>
 				<AddDialog/>
-				<div style={{display: 'flex', gap: '1rem', borderStyle: 'solid', borderWidth: '2px', borderColor: '#006666', borderRadius: '1rem', paddingLeft: '1rem'}}>
-					<img src="./assets/search.svg" alt="" style={{width: '20px'}}/>
-					<input type="text" placeholder='Pesquisar tarefas' style={{borderStyle: 'none'}} onKeyDown={(e)=> {
-						if(e.key === 'Enter'){
-							searchData();
-						}
-					}}/>
-				</div>
+				<SearchDialog />
 			</div>
 		  </GridToolbarContainer>
 		);
-	}
-
-	const searchData = () => {
-		
 	}
 
 	const handleEdit = (id: GridRowId) => () => {
@@ -74,7 +66,6 @@ export default function CrudGrid() {
 	}
 
 	const handleDelete = (id: GridRowId) => () => {
-		console.log(id)
 		try {
 			deleteDoc(doc(db, 'tasks', id.toString())).then(() => {
 				alert('deletado com sucesso')
@@ -146,12 +137,11 @@ export default function CrudGrid() {
 	useEffect(() => {
 		if (rows) {
 			getDocs(collection(db, 'tasks')).then((docs: any) => {
-				console.log(docs)
 				docs.forEach((doc: any) => {
 					const aux = doc.data()
+					console.log(aux)
 					setRows(rows => [...rows, createData(doc.id, aux.titulo, aux.descricao)])
 				})
-				console.log(rows)
 			}).catch((e) => {
 				console.log(e)
 			})
