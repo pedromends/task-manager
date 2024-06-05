@@ -17,15 +17,15 @@ function SignIn (){
 	};
     
     const signIn = (e: any) => {
-
         e.preventDefault();
         firebase.auth()
             .signInWithEmailAndPassword(email, password).then((userCredential)=>{
                 console.log(userCredential);
             }).catch((error)=> {
                 console.log(error);
+                alert('Credenciais erradas')
             })
-        .finally(()=> setAuth(true));
+        .finally(() => setAuth(true));
     }
 
     return (
