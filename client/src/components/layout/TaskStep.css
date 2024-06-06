@@ -1,3 +1,9 @@
+@media screen and (max-width: 768px) {
+    .progress-card{
+        flex-direction: column-reverse;
+    }
+}
+
 .cards-panel {
     display: flex;
     flex-direction: column;

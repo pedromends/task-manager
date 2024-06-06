@@ -3,32 +3,39 @@ import { useState } from "react";
 import { doc, serverTimestamp, setDoc } from "firebase/firestore";
 import { useNavigate } from "react-router-dom";
 import { db } from "../config/firebase-config";
-import '../components/style.css'
 import { Button, TextField } from "@mui/material";
+import AlertEditError from '../components/alert/AlertEditError'
+import AlertEdit from '../components/alert/AlertEdit';
+import '../components/style.css';
 
 function EditTodo() {
 
     const { state } = useLocation();
     const [ title, setTitle ] = useState(state.title);
     const [ desc, setDesc ] = useState(state.desc);
+    const [ editAlert, setEditAlert ] = useState(false);
+    const [ editError, setEditError ] = useState(false);
+
     const navigate = useNavigate();
     const id = state.id
 
     const updateTodo = (e: any) => {
 
         e.preventDefault();
+
         setDoc(doc(db, 'tasks', id), {
             titulo:  title,
             descricao: desc,
             timeStamp: serverTimestamp()
         }).catch((e) => {
+            setEditError(true)
             console.log(e)
+            setInterval(() => navigate("/"), 3000)
         }).finally(() => {
-            navigate("/");
-            window.location.reload()
+            setEditAlert(true)
+            setInterval(() => navigate("/"), 3000)
         })
     }
-
 
     return (
         <main>
@@ -40,9 +47,13 @@ function EditTodo() {
             </div>
             <div className="edit-page">
                 <form onSubmit={updateTodo} className='edit-task'>
-                    <div style={{backgroundColor: 'transparent', display: 'flex', alignItems:'center', color: 'white', gap: '1rem'}} onClick={()=>window.history.back()}>
+                    <div style={{backgroundColor: 'transparent', display: 'flex', alignItems:'center', color: 'white', gap: '1rem'}} onClick={() => window.history.back()}>
                         <img src="./assets/left-arrow.svg" alt="" style={{height: '30px'}}/>
                         <p>Retornar</p>
+                    </div>
+                    <div>
+                        {editAlert && <AlertEdit/>}
+                        {editError && <AlertEditError/>}
                     </div>
                     <h1 style={{color: 'white', textAlign:'start', textDecoration: 'underline', textDecorationColor: 'rgba(168,204,204,1)', textDecorationThickness: '3px'}}>Editar Tarefa</h1>
                     <div className="email-1">
@@ -55,14 +66,12 @@ function EditTodo() {
                         <TextField id="outlined-basic" variant="outlined" color='error' sx={{backgroundColor: 'white', borderRadius: '1rem'}}
                             value={desc} required onChange={(e) => setDesc(e.target.value)}/>
                     </div>
-
                     <div className="submit-task">
                         <Button type="submit" variant="contained" sx={{backgroundColor:'rgba(168,204,204,1)', color: '#006666', ":hover":{backgroundColor:' rgba(240,247,247,1)', color: '#006666'}}}>Salvar alterações</Button>
                     </div>
                 </form>
             </div>
         </main>
-        
     )
 }
 

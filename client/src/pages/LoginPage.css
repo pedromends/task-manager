@@ -1,3 +1,9 @@
+@media screen and (max-width: 768px) {
+    .forms {
+        flex-direction: column;
+    }
+}
+
 .login-page {
     background: rgb(240,247,247);
     background: linear-gradient(90deg, rgba(240,247,247,1) 70%, rgba(168,204,204,1) 70%);
@@ -7,17 +13,16 @@
     align-items: center;
 }
 
-.forms{
+.forms {
     gap: 10rem;
     padding-top: 2rem;
     padding-bottom: 2rem;
     display: flex;
     justify-content: center;
     align-items: center;
-    
 }
 
-.form-2{
+.form-2 {
     background-color: rgba(255,255,255,255);
     border-color: #006666;
     border-style: solid;

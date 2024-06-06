@@ -9,6 +9,7 @@ import { useState, useEffect } from 'react';
 import './CrudGrid.css'
 import AddDialog from '../dialog/AddDialog';
 import SearchDialog from '../dialog/SearchDialog';
+import SuccessDelete from "../alert/SuccessDelete";
 
 interface Data {
 	id: string,
@@ -28,6 +29,7 @@ export default function CrudGrid() {
 
 	const [rows, setRows] = useState<Data[]>([]);
 	const navigate = useNavigate();
+	const [successDelete, setSuccessDelete] = useState(false);
 	
 	
 	const handleRowEditStop: GridEventListener<'rowEditStop'> = (params, event) => {
@@ -67,15 +69,13 @@ export default function CrudGrid() {
 	const handleDelete = (id: GridRowId) => () => {
 		try {
 			deleteDoc(doc(db, 'tasks', id.toString())).then(() => {
-				alert('deletado com sucesso')
+				setSuccessDelete(true)
+				setInterval(() => window.location.reload(), 3000)
 			}).catch((err) => {
 				console.log(err)
-			}).finally(() => {
-				navigate("/");
-				window.location.reload()
 			})
 		} catch {
-			console.log('deu ruim');
+			console.log('Unable to delete');
 		}
 	}
 
@@ -138,7 +138,6 @@ export default function CrudGrid() {
 			getDocs(collection(db, 'tasks')).then((docs: any) => {
 				docs.forEach((doc: any) => {
 					const aux = doc.data()
-					console.log(aux)
 					setRows(rows => [...rows, createData(doc.id, aux.titulo, aux.descricao)])
 				})
 			}).catch((e) => {
@@ -165,6 +164,7 @@ export default function CrudGrid() {
 			}}
 			>
 			<h1 style={{color: '#006666'}}>Tarefas</h1>
+			{successDelete && <SuccessDelete/>}
 			<DataGrid
 				sx={{
 					color:'#006666',
@@ -176,6 +176,7 @@ export default function CrudGrid() {
 				initialState={{
 					pagination: { paginationModel: { pageSize: 5 } },
 				}}
+				
 				slots={{
 					toolbar: EditToolbar as GridSlots['toolbar'],
 				  }}

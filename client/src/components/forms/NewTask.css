@@ -12,13 +12,6 @@
     color: #006666;
 }
 
-.crud-parent {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 3rem;
-}
-
 .new-task {
     padding-left: 3rem;
     padding-right: 3rem;

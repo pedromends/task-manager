@@ -1,3 +1,13 @@
+@media screen and (max-width: 768px) {
+    .dash-skeleton, .time-cards-children, .main-banner {
+        flex-direction: column;
+    }
+
+    .main-banner, .dash-skeleton {
+        gap: 2rem !important;
+    }
+}
+
 .main-banner {
     background-color: #006666;
     display: flex;

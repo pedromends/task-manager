@@ -2,13 +2,15 @@ import { useState } from "react";
 import firebase from 'firebase/compat/app';
 import { TextField, Button } from '@mui/material';
 import './SignIn.css'
+import AlertError from "../alert/AlertError";
 
 function SignIn (){
 
     const [ email, setEmail ] = useState("");
     const [ password, setPassword ] = useState("");
     const [authFlag, setAuth] = useState( false || window.localStorage.getItem('auth') === 'true' );
-
+    const [show, setShow] = useState(false);
+    
     const loginWithGoogle = () => {
 		firebase.auth().signInWithPopup(new firebase.auth.GoogleAuthProvider())
 		.then((userCred:any) => {
@@ -19,11 +21,8 @@ function SignIn (){
     const signIn = (e: any) => {
         e.preventDefault();
         firebase.auth()
-            .signInWithEmailAndPassword(email, password).then((userCredential)=>{
-                console.log(userCredential);
-            }).catch((error)=> {
-                console.log(error);
-                alert('Credenciais erradas')
+            .signInWithEmailAndPassword(email, password).catch((error)=> {
+                setShow(true)
             })
         .finally(() => setAuth(true));
     }
@@ -33,6 +32,7 @@ function SignIn (){
             <form onSubmit={signIn} className="main-form">
                 <img src="./assets/hourglass1.svg" alt="" style={{width: '10rem', alignSelf: 'center'}}/>
                 <h1 style={{color: 'rgba(0,102,102,255)'}}>Bem-vindo de volta!</h1>
+                {show && <AlertError/>}
                 <div className="email-div">
                     <label style={{color: 'rgba(0,102,102,255)', alignSelf: 'start'}}>Email</label>
                     <TextField id="outlined-basic" label="Escreva seu Email" variant="outlined" color='error' sx={{alignSelf: 'start', width:'100%'}}
@@ -40,7 +40,7 @@ function SignIn (){
                 </div>
                 <div className="password-div">
                     <label style={{color: 'rgba(0,102,102,255)', alignSelf: 'start'}}>Senha</label>
-                    <TextField id="outlined-basic" label="Escreva sua senha" variant="outlined" color='error'  sx={{alignSelf: 'start', width:'100%'}}
+                    <TextField id="outlined-basic" label="Escreva sua senha" type="password" variant="outlined" color='error'  sx={{alignSelf: 'start', width:'100%'}}
                         value={password} required onChange={(e) => setPassword(e.target.value)}/>
                 </div>
                 <div className="submit-div">
