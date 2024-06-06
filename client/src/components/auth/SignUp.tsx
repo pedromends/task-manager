@@ -5,6 +5,7 @@ import firebase from 'firebase/compat/app';
 import { TextField, Button } from '@mui/material';
 import './SignUp.css'
 import SignUpError from "../alert/SignUpError";
+import SignUpSuccess from "../alert/SignUpSuccess";
 
 function SignUp (){
 
@@ -12,6 +13,7 @@ function SignUp (){
     const [ name, setName ] = useState("");
     const [ password, setPassword ] = useState("");
     const [signupError, setSignupError] = useState(false);
+    const [signupSuccess, setSignupSuccess] = useState(false);
 
     const signUp = (e: any) => {
 
@@ -25,7 +27,10 @@ function SignUp (){
                     senha: password,
                     timeStamp: serverTimestamp()
                 })
+            }).then(()=>{
+
             }).catch((error)=> {
+                console.log(error)
                 setSignupError(true)
             }
         );
@@ -37,6 +42,7 @@ function SignUp (){
                 <img src="./assets/hourglass.svg" alt="" style={{width: '10rem', alignSelf: 'center'}}/>
                 <h1 style={{color:'white', alignSelf: 'center'}}>The Hourglass</h1>
                 {signupError && <SignUpError/>}
+                {signupSuccess && <SignUpSuccess/>}
                 <div className="email-div">
                     <label style={{color: 'white', alignSelf: 'start', fontWeight: 'bold'}}>Nome</label>
                     <TextField id="outlined-basic" variant="outlined" sx={{width:'20rem', backgroundColor: 'rgba(168,204,204,1)', borderRadius: '1rem'}}

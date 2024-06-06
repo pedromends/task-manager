@@ -7,7 +7,7 @@ export default function SignUpError() {
   return (
     <Stack sx={{ width: '100%' }} spacing={2}>
       <Alert severity="error">
-        Email já está sendo utilizado
+        Email já está sendo utilizado ou senha fraca
       </Alert>
     </Stack>
   );
