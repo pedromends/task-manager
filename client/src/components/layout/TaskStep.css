@@ -1,11 +1,19 @@
 @media screen and (max-width: 768px) {
-    .progress-card{
-        flex-direction: column-reverse;
+    .task-step{
+        padding-top: 3rem;
+        display: flex;
+        flex-direction: column;
+        gap: 3rem;
+    }
+
+    .child-1{
+        flex-direction: column;
     }
 }
 
 .cards-panel {
     display: flex;
+    padding-top: 3rem;
     flex-direction: column;
     gap: 1rem;
 }
@@ -27,14 +35,20 @@
     background-color: white;
 }
 
-.progress-card{
-    display: flex;
-    align-items: center;
-    justify-content: center;
+.progress-card {
     background-color: white;
+    display: flex;
+    flex-direction: column;
     border-radius: 2rem;
     border-color: #006666;
     border-style: solid;
+    padding: 1.5rem;
+}
+
+.progress-card .child-1{
+    display: flex;
+    align-items: center;
+    justify-content: center;
     gap: 3rem;
     padding: 1rem;
 }

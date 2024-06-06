@@ -5,11 +5,9 @@ export default function DashboardTop(){
         <main>
             <h1 style={{color: '#006666', textAlign:'start', textDecoration: 'underline', textDecorationColor: 'rgba(168,204,204,1)', textDecorationThickness: '3px'}}>Dashboard</h1>
             <div className='dash-skeleton'>
-                <div style={{display:'flex', alignItems: 'center'}}>
-                    <div className='main-banner'>
-                        <p>The Hourglass - Um lar <br/> para as suas ideias</p>
-                        <img src="./assets/rocket.png" alt="" style={{width:'5rem'}}/>
-                    </div>
+                <div className='main-banner'>
+                    <p>The Hourglass - Um lar <br/> para as suas ideias</p>
+                    <img src="./assets/rocket.png" alt="" style={{width:'5rem'}}/>
                 </div>
                 <div className='time-cards'>
                     <h3 style={{color: '#006666', textAlign:'center'}}>Tempo de Execução do projeto</h3>

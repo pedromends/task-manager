@@ -42,7 +42,7 @@ export default function CrudGrid() {
 	  
 		return (
 		  <GridToolbarContainer>
-			<div style={{width: '100%', display: 'flex', justifyContent: 'space-between', marginTop: '2rem', paddingLeft: '2rem', paddingRight: '2rem'}}>
+			<div style={{width: '100%', display: 'flex', justifyContent: 'space-between', marginTop: '2rem', paddingLeft: '1rem', paddingRight: '1rem'}}>
 				<AddDialog/>
 				<SearchDialog />
 			</div>
@@ -163,7 +163,7 @@ export default function CrudGrid() {
 				marginTop: '5rem'
 			}}
 			>
-			<h1 style={{color: '#006666'}}>Tarefas</h1>
+			<h1 style={{color: '#006666', textDecoration: 'underline', textDecorationColor: 'rgba(168,204,204,1)', textDecorationThickness: '3px'}}>Tarefas</h1>
 			{successDelete && <SuccessDelete/>}
 			<DataGrid
 				sx={{

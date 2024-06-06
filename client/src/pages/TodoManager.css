@@ -16,6 +16,11 @@
         width: 100%;
         overflow-y: auto;
     }
+
+    .dash-parent {
+        padding-left: 2rem !important;
+        padding-right: 2rem !important;
+    }
 }
 
 .list-page {
@@ -62,6 +67,10 @@
 }
 
 .dash-parent {
-    padding-left: 8rem;
-    padding-right: 8rem;
+    padding-left: 11rem;
+    padding-right: 11rem;
+}
+
+.left-panel {
+    margin-top: 5rem;
 }

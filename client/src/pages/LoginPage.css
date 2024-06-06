@@ -2,6 +2,10 @@
     .forms {
         flex-direction: column;
     }
+    
+    .login-page {
+        height: auto !important;
+    }
 }
 
 .login-page {

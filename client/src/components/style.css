@@ -1,6 +1,10 @@
 @media screen and (max-width: 768px) {
     .bar{
-        flex-direction: column;
+        flex-direction: column-reverse;
+    }
+
+    .log{
+        display: none !important;
     }
 }
 

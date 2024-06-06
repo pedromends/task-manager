@@ -39,7 +39,7 @@ const AuthDetails = () => {
             <img src="./assets/hourglass.svg" style={{width: '3rem'}} alt="" />
             <p style={{pointerEvents: 'none'}}>The Hourglass</p>
           </div>
-          <div style={{display: 'flex', justifyItems: 'center', alignItems: 'center', gap: '10px'}}>
+          <div className="log" style={{display: 'flex', justifyItems: 'center', alignItems: 'center', gap: '10px'}}>
             <p>{`Logado como ${authUser.email}`}</p>
             <Button onClick={userSignOut} sx={{backgroundColor: 'rgba(168,204,204,1)', color: '#006666', ":hover":{backgroundColor: 'rgba(240,247,247,1)'}}}>Sair</Button>
           </div>
