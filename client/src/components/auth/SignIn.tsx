@@ -23,6 +23,8 @@ function SignIn (){
         firebase.auth()
             .signInWithEmailAndPassword(email, password).catch((error)=> {
                 setShow(true)
+            }).then((e)=>{
+                
             })
         .finally(() => setAuth(true));
     }

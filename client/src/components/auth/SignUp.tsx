@@ -4,12 +4,14 @@ import { addDoc, collection, serverTimestamp } from "firebase/firestore";
 import firebase from 'firebase/compat/app';
 import { TextField, Button } from '@mui/material';
 import './SignUp.css'
+import SignUpError from "../alert/SignUpError";
 
 function SignUp (){
 
     const [ email, setEmail ] = useState("");
     const [ name, setName ] = useState("");
     const [ password, setPassword ] = useState("");
+    const [signupError, setSignupError] = useState(false);
 
     const signUp = (e: any) => {
 
@@ -24,7 +26,7 @@ function SignUp (){
                     timeStamp: serverTimestamp()
                 })
             }).catch((error)=> {
-                console.log(error);
+                setSignupError(true)
             }
         );
     }
@@ -34,6 +36,7 @@ function SignUp (){
             <form onSubmit={signUp} className="signup-form">
                 <img src="./assets/hourglass.svg" alt="" style={{width: '10rem', alignSelf: 'center'}}/>
                 <h1 style={{color:'white', alignSelf: 'center'}}>The Hourglass</h1>
+                {signupError && <SignUpError/>}
                 <div className="email-div">
                     <label style={{color: 'white', alignSelf: 'start', fontWeight: 'bold'}}>Nome</label>
                     <TextField id="outlined-basic" variant="outlined" sx={{width:'20rem', backgroundColor: 'rgba(168,204,204,1)', borderRadius: '1rem'}}
