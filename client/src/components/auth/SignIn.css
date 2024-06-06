@@ -1,3 +1,11 @@
+@media screen and (max-width: 768px) {
+    .main-form {
+        padding-left: 1rem !important;
+        padding-right: 1rem !important;
+    }
+}
+
+
 .email-div, .password-div {
     display: flex;
     flex-direction: column;
@@ -22,8 +30,6 @@
     border-color: white;
     border-style: solid;
     border-radius: 2rem;
-    padding-top: 1rem;
-    padding-bottom: 1rem;
 }
 
 .main-form {
